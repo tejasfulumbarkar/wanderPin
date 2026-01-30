@@ -39,6 +39,7 @@ app.get("/", (req,res)=>{
 
 app.set("view engine","ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({extended:true}))
 
 // listing route to get all the listings
 
@@ -49,14 +50,28 @@ app.get("/listings",async(req,res)=>{
 
 })
 
+// get form route for new listing
+
+app.get("/listings/new",  (req,res)=>{
+    res.render("listings/new");
+});
+
+app.post("/listings",async (req,res)=>{
+
+res.send("gonna work niggga");
+})
+
 // show single route 
 app.get("/listings/:id", async (req,res)=>{
 
      const onelisting = await listing.findById(req.params.id);
- res.render("listings/show.ejs", { onelisting });
+ res.render("listings/show", { onelisting });
 
 })
+
+
 app.listen( 8080,()=>{
 
     console.log("server is running");
+    
 });
