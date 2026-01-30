@@ -10,9 +10,10 @@
     <ul>
         <li><%= onelisting.title %></li>
         <li><%= onelisting.description %></li>
-        <li>₹ <%= onelisting.price.toLocaleString()  %></li>
+        <li>₹ <%= onelisting.price.toLocaleString("en-IN") %></li>
         <li><%= onelisting.location  %></li>
         <li><%= onelisting.country  %></li>
     </ul>
+    <a href="/listings/<%=onelisting._id%>/edit">Edit this listing</a>
 </body>
 </html>

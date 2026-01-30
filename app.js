@@ -53,21 +53,36 @@ app.get("/listings",async(req,res)=>{
 // get form route for new listing
 
 app.get("/listings/new",  (req,res)=>{
-    res.render("listings/new");
+    res.render("listings/new.ejs");
 });
 
 app.post("/listings",async (req,res)=>{
+     const newListing = new listing(req.body);
+  await newListing.save();
+  res.redirect("/listings");
 
-res.send("gonna work niggga");
+})
+
+app.get("/listings/:id/edit",async(req,res)=>{
+    const onelisting = await listing.findById(req.params.id);
+    res.render("listings/edit.ejs",{onelisting});
+})
+
+app.post("/listings/:id/update", async(req,res)=>{
+    await listing.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/listings");
 })
 
 // show single route 
 app.get("/listings/:id", async (req,res)=>{
 
      const onelisting = await listing.findById(req.params.id);
- res.render("listings/show", { onelisting });
+ res.render("listings/show.ejs", { onelisting });
 
 })
+
+
+
 
 
 app.listen( 8080,()=>{

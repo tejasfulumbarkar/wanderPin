@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form method="post" action="/listings/<%=onelisting._id%>/update">
+        <input name="title" type="text" value="<%=onelisting.title %>">
+        <br>
+        <textarea name="description"><%=onelisting.description %></textarea>
+        <input name="image" placeholder="Enter image url" type="text" value="<%=onelisting.image.url %>">
+        <br>
+        <input name="price"  type="number" value="<%=onelisting.price %>">
+        <br>
+        <input name="location"  type="text" value="<%=onelisting.location %>">
+        <br>
+        <input name="country"  type="text" value="<%=onelisting.country %>">
+        <button type="submit">update</button>
+
+    </form>
+    
+</body>
+</html>
